@@ -5,7 +5,7 @@ import java.util.*;
  * La classe Archivo instancia un sistema de gestión documental
  * 
  * @author Juan Pedro Cerro Martínez 
- * @version 1.0
+ * @version 2.0
  */
 public class Archivo
 {
