@@ -1,0 +1,34 @@
+name: Compilar y ejecutar Java
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Descargar el código del repositorio
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      # 2. Configurar Java
+      - name: Configurar JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      # 3. Compilar todas las clases Java
+      - name: Compilar código Java
+        run: |
+          mkdir -p out
+          find . -name "*.java" -not -path "./.git/*" > sources.txt
+          javac -d out @sources.txt
+
+      # 4. Ejecutar la clase principal
+      - name: Ejecutar programa
+        run: java -cp out Archivo
